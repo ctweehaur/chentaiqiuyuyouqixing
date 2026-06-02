@@ -51,19 +51,17 @@ body {
 #en-toggle:checked + .slider { background-color: var(--accent-purple); }
 #en-toggle:checked + .slider:before { transform: translateX(20px); }
 
-/* ==========================================================================
-   🎯 注音核心容器：彻底消灭空隙的全新无损降维重构
-   ========================================================================== */
+/* 注音核心容器 */
 .char-box {
-    display: inline-block !important;      /* 修正：由 inline-flex 降级为稳固行内块，扼杀所有隐藏空格字符 */
-    text-align: center !important;
+    display: inline-flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
     vertical-align: bottom !important;
     margin: 0 1px !important;
     width: auto !important;
 }
 
 .char-box .py-text {
-    display: block !important;             /* 确保拼音自成块级，垂直稳稳盖在汉字上方 */
     font-size: 12px !important;
     color: var(--accent-orange) !important;
     font-weight: 500 !important;
@@ -76,11 +74,9 @@ body {
 }
 
 .char-box .zh-text {
-    display: block !important;             /* 块级排列，与上方拼音严丝合缝对齐 */
     font-size: 26px !important;
     line-height: 1.2 !important;
-    height: 32px !important;   
-    text-align: center !important;    
+    height: 32px !important;       
 }
 
 body.hide-pinyin .py-text { visibility: hidden !important; opacity: 0 !important; }
@@ -99,15 +95,14 @@ body.hide-english .sa-en {
 .poem-container { background: #fefcf5; border-radius: var(--border-radius-md); padding: 35px 30px; margin-bottom: 25px; border: 1px solid #ede9d0; margin-top: 15px; text-align: left !important; }
 .poem-paragraph { text-align: left !important; font-size: 26px; line-height: 3.4; color: var(--text-poem); font-family: 'STKaiti', 'KaiTi', '楷体', serif; letter-spacing: 1px; margin: 0; }
 
-/* 🎯 优化：分词盒子同步修正为块级流，规避内部空格乱跑 */
 .word { 
     cursor: pointer; 
     padding: 0px 4px 4px 4px; 
     border-radius: 6px; 
     position: relative; 
     transition: all 0.25s; 
-    display: inline-block !important;      /* 修正：不再使用 flex，锁定块流对齐 */
-    text-align: center !important;
+    display: inline-flex; 
+    align-items: center;
     height: 48px; 
     overflow: visible;
 }
@@ -163,7 +158,9 @@ body.hide-english .sa-en {
 
 .collapsible-content { margin-top: 25px; text-align: left; display: none; animation: slideDown 0.4s ease; }
 
-/* 客观题自测 */
+/* ==========================================
+   客观题自测（强力修复选项上下单列排列）
+   ========================================== */
 .quiz-card { background: #ffffff; border: 1px solid #e2e8f0; border-radius: var(--border-radius-md); padding: 25px; margin-bottom: 25px; text-align: left;}
 .question-header { margin-bottom: 16px; text-align: left !important; display: block !important; }
 .q-zh-wrapper { display: block !important; text-align: left !important; }
@@ -174,6 +171,7 @@ body.hide-english .sa-en {
 
 .q-en { font-size: 14px !important; color: var(--text-secondary) !important; font-style: normal !important; margin-top: 6px; line-height: 1.5; text-align: left !important; padding-left: 26px; }
 
+/* 选项区域：强制使用纵向 Flex 列模型，彻底消灭任何左右并排的情况 */
 .options-area {
     display: flex !important;
     flex-direction: column !important;
@@ -187,7 +185,7 @@ body.hide-english .sa-en {
     margin-bottom: 12px; 
     transition: all 0.2s; 
     box-shadow: none !important; 
-    display: block !important; 
+    display: block !important; /* 块级容器 */
     text-align: left !important; 
     width: 100% !important; 
     padding: 14px 18px !important;
@@ -231,19 +229,23 @@ body.hide-english .sa-en {
 .feedback .punctuation { font-size: 15px !important; height: 20px !important; margin: 0 1px !important; }
 .fb-en { font-size: 14px !important; font-style: normal !important; color: #64748b !important; margin-top: 4px; margin-bottom: 8px; line-height: 1.5; text-align: left !important; padding-left: 4px; display: block !important; width: 100% !important;}
 
-/* 简答题特训 */
+/* ==========================================================================
+   简答题特训（完美修复 Q1/Q2 垂直居中对齐）
+   ========================================================================== */
 .sa-card { background: #ffffff; border: 1px solid #e2e8f0; border-radius: var(--border-radius-md); padding: 25px; margin-bottom: 25px; text-align: left; }
 
+/* 题头：改用标准的横向弹性流，并强制垂直居中对齐 */
 .sa-q-header { 
     display: flex !important;
     flex-direction: row !important;
-    align-items: center !important; 
+    align-items: center !important; /* 关键：强制让左边的小标签与右边放大后的文字始终居中对齐 */
     justify-content: flex-start !important;
     text-align: left !important; 
     margin-bottom: 12px;
     width: 100% !important;
 }
 
+/* 序号外层包裹盒：保证高度统一稳定 */
 .sa-q-num-box {
     display: inline-flex !important;
     align-items: center !important;
@@ -264,16 +266,19 @@ body.hide-english .sa-en {
     white-space: nowrap !important;
 }
 
+/* 文本组：转为块流，内部注音结构自然靠底部或者标准对齐 */
 .q-text-group { 
     display: block !important; 
     flex: 1 !important;
 }
 .sa-q-header .q-zh { margin: 0 !important; display: block !important; }
 
+/* 放大后的简答题中文字体大小 */
 .sa-q-header .char-box .zh-text { font-size: 18px !important; height: 24px !important; font-weight: 700 !important; color: var(--text-poem); }
 .sa-q-header .char-box .py-text { font-size: 11px !important; height: 14px !important; line-height: 14px !important; }
 .sa-q-header .punctuation { font-size: 18px !important; height: 24px !important; margin: 0 1px !important; font-weight: 700 !important; }
 
+/* 英文保持缩进 */
 .sa-card .q-en { font-size: 14px !important; color: var(--text-secondary); margin-top: 6px; margin-bottom: 14px; padding-left: 54px; }
 
 /* 答题思路 */
@@ -308,10 +313,4 @@ body.hide-english .sa-en {
 @keyframes slideDown { from { opacity: 0; transform: translateY(-15px); } to { opacity: 1; transform: translateY(0); } }
 @keyframes fadeIn { from { opacity: 0; transform: translateY(-5px); } to { opacity: 1; transform: translateY(0); } }
 
-@media (max-width: 600px) { 
-    .app-container { padding: 25px 15px; } 
-    /* 🎯 同步微调：手机端同步采用标准重构机制 */
-    .poem-paragraph { padding-left: 0px !important; font-size: 20px; letter-spacing: 2px; } 
-    .action-btn { width: 100%; } 
-    .sa-card .q-en { padding-left: 0px; } 
-}
+@media (max-width: 600px) { .app-container { padding: 25px 15px; } .poem-paragraph { padding-left: 1.5em; font-size: 20px; letter-spacing: 2px; } .action-btn { width: 100%; } .sa-card .q-en { padding-left: 0px; } }
