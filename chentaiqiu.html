@@ -7,7 +7,7 @@
     <!-- 引入独立CSS -->
     <link rel="stylesheet" href="classic_style.css">
     
-    <!-- 🎯 满血加载：陈太丘与友期行全新 5 大专属 JS 数据包家族 -->
+    <!-- 引入独立的 5 个 JS 数据包 -->
     <script src="chen_text.js"></script>
     <script src="chen_translation.js"></script>
     <script src="chen_analysis.js"></script>
@@ -68,6 +68,7 @@
         let pIdx = 0;
         let html = '';
         for (let c of chars) {
+            // 精准拦截：增加对中文破折号、各类括号、特殊符号如箭头的全面过滤
             if (/[，。？！：“”‘’（）《》、\-\:；—\(\)→\s]/.test(c)) {
                 html += `<span class="punctuation">${c}</span>`;
             } else {
@@ -111,24 +112,12 @@
         initInteractions();
     };
 
-    // 🎯 100% 移植母版分段机制：靠左对齐，首行空两格，且标点断开处往下精准空两行
     function renderPoem() {
         const container = document.getElementById('dynamic-poem-container');
         let html = '<div class="poem-paragraph">&emsp;&emsp;'; 
-        
-        poemData.forEach((w, index) => {
+        poemData.forEach(w => {
             if(w.punc) {
                 html += `<span class="punctuation">${w.text.trim()}</span>`;
-                
-                // 🚀 母版排版高级拓展：扫描到句尾大标点，直接关闭当前段落，制造两行高度的空行，并为下一段自动补齐全角空两格
-                if (w.text.trim() === '。' || w.text.trim() === '！' || w.text.trim() === '？' || w.text.trim() === '”') {
-                    if (index < poemData.length - 1) {
-                        html += `</div>
-                                 <div class="poem-paragraph" style="visibility: hidden !important; line-height: 1 !important; height: 18px !important; margin: 0 !important; padding: 0 !important;">&nbsp;</div>
-                                 <div class="poem-paragraph" style="visibility: hidden !important; line-height: 1 !important; height: 18px !important; margin: 0 !important; padding: 0 !important;">&nbsp;</div>
-                                 <div class="poem-paragraph">&emsp;&emsp;`;
-                    }
-                }
             } else {
                 let examClass = w.exam ? ' word exam-focus' : ' word';
                 let examAttr = w.exam ? ' data-exam="true"' : '';
@@ -214,6 +203,14 @@
         container.innerHTML = html;
     }
 
+    function shuffleArray(arr) {
+        for (let i = arr.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [arr[i], arr[j]] = [arr[j], arr[i]];
+        }
+        return arr;
+    }
+    
     function renderQuizCards() {
         const container = document.getElementById('quiz-dynamic-container');
         if (!container || originalQuizQuestions.length === 0) return;
@@ -265,6 +262,7 @@
                     const isCorrect = this.getAttribute('data-correct') === 'true';
                     const correctBtn = Array.from(btns).find(b => b.getAttribute('data-correct') === 'true');
                     const correctOptText = correctBtn ? correctBtn.getAttribute('data-opt-text') : '正确选项';
+                    const correctOptPy = correctBtn ? correctBtn.getAttribute('data-opt-py') : '';
                     const correctOptEn = correctBtn ? correctBtn.getAttribute('data-opt-en') : '';
                     
                     btns.forEach(b => b.disabled = true);
@@ -302,7 +300,6 @@
         });
     }
 
-    // 🎯 100% 移植母版生词功能：PC追踪定位对齐，且添加事件监听
     function initInteractions() {
         const translationHeader = document.getElementById('translationHeader');
         const translationContent = document.getElementById('translationContent');
@@ -330,7 +327,6 @@
             else document.body.classList.add('hide-english'); 
         });
 
-        // 🚀 母版核心移植点：点击古文单词时动态弹起气泡并触发绝对物理追踪定位
         const words = document.querySelectorAll('.word');
         const tooltip = document.getElementById('tooltip');
         const dispWord = document.getElementById('disp-word');
