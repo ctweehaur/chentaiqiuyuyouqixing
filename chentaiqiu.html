@@ -169,16 +169,30 @@
         initInteractions();
     };
 
+    // 🎯 核心改装点：完全仿照《穿井得一人》打造的“左对齐 + 开头缩进 + 中间精准顶开两行空行”功能引擎
     function renderPoem() {
         const container = document.getElementById('dynamic-poem-container');
         const data = poemData[currentChapterId] || [];
-        let html = '<div class="poem-paragraph" style="text-align: center !important; padding-left: 0 !important; margin: 0 auto !important; line-height: 1.8 !important;">'; 
         
-        data.forEach(w => {
+        // 🚀 起始段落：完全移除居中命令，直接采用全局左对齐机制（自动继承 classic_style.css 的两格缩进）
+        let html = '<div class="poem-paragraph">'; 
+        
+        data.forEach((w, index) => {
             if(w.punc) {
                 html += `<span class="punctuation">${w.text.trim()}</span>`;
-                if (w.text.trim() === '，' || w.text.trim() === '？' || w.text.trim() === '。' || w.text.trim() === '！') {
-                    html += '</div><div class="poem-paragraph" style="text-align: center !important; padding-left: 0 !important; margin: 0 auto !important; margin-top: 4px !important; line-height: 1.8 !important;">';
+                
+                // 🛑 智能断句节点拦截器：遇到一句话说完了，或者引号闭合处，立刻切断换行
+                if (w.text.trim() === '。' || w.text.trim() === '！' || w.text.trim() === '？' || w.text.trim() === '”') {
+                    
+                    // 只要不是全篇文言文的最后一行，就在段落拼接处注入两个透明占位盒，物理顶开两行的垂直空间
+                    if (index < data.length - 3) {
+                        html += `</div>
+                                 <!-- 🚀 精准炸开两行空行，无视 Sites 高度限制 -->
+                                 <div class="poem-paragraph" style="visibility: hidden !important; line-height: 1 !important; height: 18px !important; margin: 0 !important; padding: 0 !important;">&nbsp;</div>
+                                 <div class="poem-paragraph" style="visibility: hidden !important; line-height: 1 !important; height: 18px !important; margin: 0 !important; padding: 0 !important;">&nbsp;</div>
+                                 <!-- 开启全新小段落，完美首行空两格 -->
+                                 <div class="poem-paragraph">`;
+                    }
                 }
             } else {
                 let examClass = w.exam ? ' word exam-focus' : ' word';
@@ -362,11 +376,9 @@
                 tooltip.style.display = 'block';
                 
                 if (window.innerWidth <= 768) {
-                    // 🎯 核心大升级：手机移动端强制居中变身，彻底无视任何 Sites 贴底边框！
                     tooltip.style.top = '50%';
                     tooltip.style.left = '50%';
                 } else {
-                    // 电脑端：继续精准追踪对齐悬浮
                     const rect = this.getBoundingClientRect();
                     tooltip.style.top = `${rect.top + window.scrollY - tooltip.offsetHeight - 20}px`;
                     tooltip.style.left = `${rect.left + window.scrollX + rect.width / 2}px`;
