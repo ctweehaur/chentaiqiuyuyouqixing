@@ -4,8 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>互动古文：陈太丘与友期行 · 世说新语 (中英双语·词解版)</title>
+    <!-- 引入独立CSS -->
     <link rel="stylesheet" href="classic_style.css">
     
+    <!-- 🎯 满血加载：陈太丘与友期行全新 5 大专属 JS 数据包家族 -->
     <script src="chen_text.js"></script>
     <script src="chen_translation.js"></script>
     <script src="chen_analysis.js"></script>
@@ -21,6 +23,7 @@
     </div>
     
     <div class="poem-container">
+        <!-- 古文原文动态容器 -->
         <div id="dynamic-poem-container"></div>
         
         <div class="translation-block" id="translationBlock">
@@ -57,7 +60,16 @@
 <script>
     let originalQuizQuestions = [];
 
-    // 【终极重构注音引擎】：加入最全的标点与特殊符号过滤（破折号、箭头、引号、括号），让它们自动不消耗拼音！
+    // 🎯 补回数组乱序洗牌算法，彻底解除卡死封印
+    function shuffleArray(arr) {
+        for (let i = arr.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [arr[i], arr[j]] = [arr[j], arr[i]];
+        }
+        return arr;
+    }
+
+    // 【终极重构注音引擎】：加入最全的标点与特殊符号过滤，让它们自动不消耗拼音！
     function alignText(zh, py) {
         if (!zh) return '';
         const chars = zh.trim().split('');
@@ -97,7 +109,6 @@
     }
 
     window.onload = function() {
-        // 🎯 兼容性读取：优先尝试读取外部嵌套的 chapter_1 属性，避免数据格式冲突导致 forEach 报错
         const dataQuiz = (typeof quizQuestions !== 'undefined') ? (quizQuestions.chapter_1 || quizQuestions) : [];
         if (dataQuiz.length > 0) {
             originalQuizQuestions = JSON.parse(JSON.stringify(dataQuiz));
@@ -110,7 +121,7 @@
         initInteractions();
     };
 
-    // 🎯 100% 移植母版机制：左对齐，首行空两格，且标点断开处往下精准炸开两行空行空间
+    // 🎯 移植母版分段机制：靠左对齐，首行空两格，且标点断开处往下精准炸开两行空行空间
     function renderPoem() {
         const container = document.getElementById('dynamic-poem-container');
         const targetData = poemData.chapter_1 || poemData;
@@ -121,7 +132,7 @@
             if(w.punc) {
                 html += `<span class="punctuation">${w.text.trim()}</span>`;
                 
-                // 🚀 标点拦截机制：扫描到句尾大标点，直接关闭当前段落，制造两行高度的空行，并为下一段自动补齐全角空两格
+                // 标点拦截机制：扫描到句尾大标点，直接关闭当前段落，制造两行高度的空行，并为下一段自动补齐全角空两格
                 if (w.text.trim() === '。' || w.text.trim() === '！' || w.text.trim() === '？' || w.text.trim() === '”') {
                     if (index < targetData.length - 1) {
                         html += `</div>
@@ -137,21 +148,6 @@
             }
         });
         html += '</div>';
-        container.innerHTML = html;
-    }
-
-    function renderTranslation() {
-        const container = document.getElementById('translationContent');
-        const targetTranslation = translationData.chapter_1 || translationData;
-        let html = '';
-        targetTranslation.forEach((item, index) => {
-            if(index > 0) html += '<div class="trans-divider"></div>';
-            html += `
-                <div class="trans-text-line">
-                    <div class="trans-zh">${alignText(item.zh, item.py)}</div>
-                    <div class="trans-en">${item.en}</div>
-                </div>`;
-        });
         container.innerHTML = html;
     }
 
@@ -321,7 +317,6 @@
         });
     }
 
-    // 🎯 100% 移植母版生词追踪交互逻辑与弹窗控制
     function initInteractions() {
         const translationHeader = document.getElementById('translationHeader');
         const translationContent = document.getElementById('translationContent');
@@ -349,7 +344,7 @@
             else document.body.classList.add('hide-english'); 
         });
 
-        // 🚀 母版定位核心：追踪古文生词的物理 X/Y 轴位置，无缝悬浮对齐气泡
+        // 🚀 核心归位：进程畅通无阻，生词点击事件成功激活绑定！
         const words = document.querySelectorAll('.word');
         const tooltip = document.getElementById('tooltip');
         const dispWord = document.getElementById('disp-word');
