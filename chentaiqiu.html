@@ -60,7 +60,66 @@
 <script>
     let originalQuizQuestions = [];
 
-    // 🎯 补回数组乱序洗牌算法，彻底解除卡死封印
+    // 🔒 一劳永逸：防漏字、防错位全自动双向咬合审计器
+    function checkPinyinAlignment() {
+        console.log("================ 🔍 开始全站拼音咬合自动审计 ================");
+        
+        // 1. 审计客观题库 (quizQuestions)
+        const quizData = (typeof quizQuestions !== 'undefined') ? (quizQuestions.chapter_1 || quizQuestions) : [];
+        if (Array.isArray(quizData)) {
+            quizData.forEach(q => {
+                // 清洗题干，排除标点符号和空格
+                const qZhClean = q.text.replace(/[，。？！：“”‘’（）《》、\-\:；—\(\)→\s]/g, "");
+                const qPyCount = q.py ? q.py.trim().split(/\s+/).length : 0;
+                if (qZhClean.length !== qPyCount) {
+                    console.error(`❌ 客观题第 ${q.id} 题题干不对齐！汉字 [${qZhClean.length}] 个，拼音 [${qPyCount}] 个。`);
+                    console.error(`   汉字流: ${qZhClean} | 拼音流: ${q.py}`);
+                }
+                
+                // 审计选项与解析
+                q.options.forEach((opt, oIdx) => {
+                    const optZh = opt.text.replace(/[A-D\.\/，。？！：“”‘’（）《》、\-\:；—\(\)→\s]/g, "");
+                    const optPy = opt.py ? opt.py.trim().split(/\s+/).length : 0;
+                    if (optZh.length !== optPy) {
+                        console.error(`❌ 客观题第 ${q.id} 题选项 [${oIdx + 1}] 不对齐！汉字 [${optZh.length}] 个，拼音 [${optPy}] 个。`);
+                    }
+                    
+                    if(opt.explanation) {
+                        const expZh = opt.explanation.replace(/[，。？！：“”‘’（）《》、\-\:；—\(\)→\s]/g, "");
+                        const expPy = opt.explanationPy ? opt.explanationPy.trim().split(/\s+/).length : 0;
+                        if (expZh.length !== expPy) {
+                            console.error(`❌ 客观题第 ${q.id} 题选项 [${oIdx + 1}] 答案解析不对齐！汉字 [${expZh.length}] 个，拼音 [${expPy}] 个。`);
+                            console.error(`   汉字流: ${expZh} | 拼音流: ${opt.explanationPy}`);
+                        }
+                    }
+                });
+            });
+        }
+
+        // 2. 审计简答题特训库 (shortQData)
+        const shortQDataTarget = (typeof shortQData !== 'undefined') ? (shortQData.chapter_1 || shortQData) : [];
+        if (Array.isArray(shortQDataTarget)) {
+            shortQDataTarget.forEach(item => {
+                const saQZhClean = item.qZh.replace(/[，。？！：“”‘’（）《》、\-\:；—\(\)→\s]/g, "");
+                const saQPyCount = item.qPy ? item.qPy.trim().split(/\s+/).length : 0;
+                if (saQZhClean.length !== saQPyCount) {
+                    console.error(`❌ 简答题 [${item.id}] 问题题干不对齐！汉字 [${saQZhClean.length}] 个，拼音 [${saQPyCount}] 个。`);
+                }
+
+                // 审计标准大答案
+                const saAZhClean = item.aZh.replace(/[，。？！：“”‘’（）《》、\-\:；—\(\)→\s]/g, "");
+                const saAPyCount = item.aPy ? item.aPy.trim().split(/\s+/).length : 0;
+                if (saAZhClean.length !== saAPyCount) {
+                    console.error(`❌ 简答题 [${item.id}] 参考答案不对齐！汉字 [${saAZhClean.length}] 个，拼音 [${saAPyCount}] 个。`);
+                    console.error(`   汉字流: ${saAZhClean}`);
+                    console.error(`   拼音流: ${item.aPy}`);
+                }
+            });
+        }
+        console.log("================ 🎉 全站拼音咬合审计流程结束 ================");
+    }
+
+    // 乱序洗牌算法
     function shuffleArray(arr) {
         for (let i = arr.length - 1; i > 0; i--) {
             const j = Math.floor(Math.random() * (i + 1));
@@ -69,7 +128,7 @@
         return arr;
     }
 
-    // 【终极重构注音引擎】：加入最全的标点与特殊符号过滤，让它们自动不消耗拼音！
+    // 注音拼装核心引擎
     function alignText(zh, py) {
         if (!zh) return '';
         const chars = zh.trim().split('');
@@ -88,7 +147,7 @@
         return html;
     }
 
-    // 同样升级此处的过滤器
+    // 带前缀的注音引擎
     function alignTextWithPrefix(prefix, zh, py) {
         if (!zh) return '';
         const chars = zh.trim().split('');
@@ -109,6 +168,9 @@
     }
 
     window.onload = function() {
+        // 🚀 每次加载全自动清点汉字和拼音，有漏字直接在控制台红牌警告！
+        checkPinyinAlignment();
+
         const dataQuiz = (typeof quizQuestions !== 'undefined') ? (quizQuestions.chapter_1 || quizQuestions) : [];
         if (dataQuiz.length > 0) {
             originalQuizQuestions = JSON.parse(JSON.stringify(dataQuiz));
@@ -121,7 +183,7 @@
         initInteractions();
     };
 
-    // 🎯 移植母版分段机制：靠左对齐，首行空两格，且标点断开处往下精准炸开两行空行空间
+    // 《穿井得一人》同款段落排版：左对齐，开头空两格，且标点断开处往下精准炸开两行空行空间
     function renderPoem() {
         const container = document.getElementById('dynamic-poem-container');
         const targetData = poemData.chapter_1 || poemData;
@@ -132,7 +194,7 @@
             if(w.punc) {
                 html += `<span class="punctuation">${w.text.trim()}</span>`;
                 
-                // 标点拦截机制：扫描到句尾大标点，直接关闭当前段落，制造两行高度的空行，并为下一段自动补齐全角空两格
+                // 标点拦截机制：扫描到句尾大标点，直接关闭当前段落，制造两行高度的空行，并自动补齐全角空两格
                 if (w.text.trim() === '。' || w.text.trim() === '！' || w.text.trim() === '？' || w.text.trim() === '”') {
                     if (index < targetData.length - 1) {
                         html += `</div>
@@ -317,6 +379,7 @@
         });
     }
 
+    // 🎯 100% 移植母版生词追踪交互逻辑
     function initInteractions() {
         const translationHeader = document.getElementById('translationHeader');
         const translationContent = document.getElementById('translationContent');
@@ -344,7 +407,7 @@
             else document.body.classList.add('hide-english'); 
         });
 
-        // 🚀 核心归位：进程畅通无阻，生词点击事件成功激活绑定！
+        // 🚀 母版追踪逻辑：绝对定位气泡框
         const words = document.querySelectorAll('.word');
         const tooltip = document.getElementById('tooltip');
         const dispWord = document.getElementById('disp-word');
