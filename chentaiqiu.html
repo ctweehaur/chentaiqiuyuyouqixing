@@ -4,10 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>互动古文：陈太丘与友期行 · 世说新语 (中英双语·词解版)</title>
-    <!-- 引入独立CSS -->
     <link rel="stylesheet" href="classic_style.css">
     
-    <!-- 引入独立的 5 个 JS 数据包 -->
     <script src="chen_text.js"></script>
     <script src="chen_translation.js"></script>
     <script src="chen_analysis.js"></script>
@@ -23,7 +21,6 @@
     </div>
     
     <div class="poem-container">
-        <!-- 古文原文动态容器 -->
         <div id="dynamic-poem-container"></div>
         
         <div class="translation-block" id="translationBlock">
@@ -68,7 +65,6 @@
         let pIdx = 0;
         let html = '';
         for (let c of chars) {
-            // 精准拦截：增加对中文破折号、各类括号、特殊符号如箭头的全面过滤
             if (/[，。？！：“”‘’（）《》、\-\:；—\(\)→\s]/.test(c)) {
                 html += `<span class="punctuation">${c}</span>`;
             } else {
@@ -101,8 +97,10 @@
     }
 
     window.onload = function() {
-        if (typeof quizQuestions !== 'undefined') {
-            originalQuizQuestions = JSON.parse(JSON.stringify(quizQuestions));
+        // 🎯 兼容性读取：优先尝试读取外部嵌套的 chapter_1 属性，避免数据格式冲突导致 forEach 报错
+        const dataQuiz = (typeof quizQuestions !== 'undefined') ? (quizQuestions.chapter_1 || quizQuestions) : [];
+        if (dataQuiz.length > 0) {
+            originalQuizQuestions = JSON.parse(JSON.stringify(dataQuiz));
         }
         renderPoem();
         renderTranslation();
@@ -112,12 +110,26 @@
         initInteractions();
     };
 
+    // 🎯 100% 移植母版机制：左对齐，首行空两格，且标点断开处往下精准炸开两行空行空间
     function renderPoem() {
         const container = document.getElementById('dynamic-poem-container');
+        const targetData = poemData.chapter_1 || poemData;
+        
         let html = '<div class="poem-paragraph">&emsp;&emsp;'; 
-        poemData.forEach(w => {
+        
+        targetData.forEach((w, index) => {
             if(w.punc) {
                 html += `<span class="punctuation">${w.text.trim()}</span>`;
+                
+                // 🚀 标点拦截机制：扫描到句尾大标点，直接关闭当前段落，制造两行高度的空行，并为下一段自动补齐全角空两格
+                if (w.text.trim() === '。' || w.text.trim() === '！' || w.text.trim() === '？' || w.text.trim() === '”') {
+                    if (index < targetData.length - 1) {
+                        html += `</div>
+                                 <div class="poem-paragraph" style="visibility: hidden !important; line-height: 1 !important; height: 18px !important; margin: 0 !important; padding: 0 !important;">&nbsp;</div>
+                                 <div class="poem-paragraph" style="visibility: hidden !important; line-height: 1 !important; height: 18px !important; margin: 0 !important; padding: 0 !important;">&nbsp;</div>
+                                 <div class="poem-paragraph">&emsp;&emsp;`;
+                    }
+                }
             } else {
                 let examClass = w.exam ? ' word exam-focus' : ' word';
                 let examAttr = w.exam ? ' data-exam="true"' : '';
@@ -130,8 +142,24 @@
 
     function renderTranslation() {
         const container = document.getElementById('translationContent');
+        const targetTranslation = translationData.chapter_1 || translationData;
         let html = '';
-        translationData.forEach((item, index) => {
+        targetTranslation.forEach((item, index) => {
+            if(index > 0) html += '<div class="trans-divider"></div>';
+            html += `
+                <div class="trans-text-line">
+                    <div class="trans-zh">${alignText(item.zh, item.py)}</div>
+                    <div class="trans-en">${item.en}</div>
+                </div>`;
+        });
+        container.innerHTML = html;
+    }
+
+    function renderTranslation() {
+        const container = document.getElementById('translationContent');
+        const targetTranslation = translationData.chapter_1 || translationData;
+        let html = '';
+        targetTranslation.forEach((item, index) => {
             if(index > 0) html += '<div class="trans-divider"></div>';
             html += `
                 <div class="trans-text-line">
@@ -144,8 +172,9 @@
 
     function renderAnalysis() {
         const container = document.getElementById('analysis-content');
+        const targetAnalysis = analysisData.chapter_1 || analysisData;
         let html = '';
-        analysisData.forEach(item => {
+        targetAnalysis.forEach(item => {
             html += `
                 <div class="analysis-card">
                     <div class="ana-title-group">
@@ -164,8 +193,9 @@
     function renderShortQ() {
         const container = document.getElementById('shortq-content');
         if (!container) return;
+        const targetShortQ = shortQData.chapter_1 || shortQData;
         let html = '';
-        shortQData.forEach(item => {
+        targetShortQ.forEach(item => {
             let strategyZhHtml = '';
             
             item.sZh.forEach((lineText, lineIdx) => {
@@ -203,14 +233,6 @@
         container.innerHTML = html;
     }
 
-    function shuffleArray(arr) {
-        for (let i = arr.length - 1; i > 0; i--) {
-            const j = Math.floor(Math.random() * (i + 1));
-            [arr[i], arr[j]] = [arr[j], arr[i]];
-        }
-        return arr;
-    }
-    
     function renderQuizCards() {
         const container = document.getElementById('quiz-dynamic-container');
         if (!container || originalQuizQuestions.length === 0) return;
@@ -230,7 +252,7 @@
             q.options.forEach((opt, idx) => {
                 const optLetter = letters[idx];
                 optionsHtml += `
-                    <button class="option-btn" data-correct="${opt.correct}" data-explanation-correct="${opt.correct ? opt.explanation : ''}" data-explanation-correct-py="${opt.correct ? opt.explanationPy : ''}" data-explanation-correct-en="${opt.correct ? opt.explanationEn : ''}" data-explanation-wrong="${!opt.correct ? opt.explanation : ''}" data-explanation-wrong-py="${!opt.correct ? opt.explanationPy : ''}" data-explanation-wrong-en="${!opt.correct ? opt.explanationEn : ''}" data-opt-text="${opt.text}" data-opt-py="${opt.py}" data-opt-en="${opt.en}">
+                    <button class="option-btn" data-correct="${opt.correct}" data-explanation-correct="${opt.correct ? opt.explanation : ''}" data-explanation-correct-py="${opt.correct ? opt.explanationPy : ''}" data-explanation-correct-en="${opt.correct ? opt.enExplanation : ''}" data-explanation-wrong="${!opt.correct ? opt.explanation : ''}" data-explanation-wrong-py="${!opt.correct ? opt.explanationPy : ''}" data-explanation-wrong-en="${!opt.correct ? opt.enExplanation : ''}" data-opt-text="${opt.text}" data-opt-py="${opt.py}" data-opt-en="${opt.en}">
                         <div class="opt-zh">
                             ${alignTextWithPrefix(optLetter, opt.text, opt.py)}
                         </div>
@@ -262,7 +284,6 @@
                     const isCorrect = this.getAttribute('data-correct') === 'true';
                     const correctBtn = Array.from(btns).find(b => b.getAttribute('data-correct') === 'true');
                     const correctOptText = correctBtn ? correctBtn.getAttribute('data-opt-text') : '正确选项';
-                    const correctOptPy = correctBtn ? correctBtn.getAttribute('data-opt-py') : '';
                     const correctOptEn = correctBtn ? correctBtn.getAttribute('data-opt-en') : '';
                     
                     btns.forEach(b => b.disabled = true);
@@ -300,6 +321,7 @@
         });
     }
 
+    // 🎯 100% 移植母版生词追踪交互逻辑与弹窗控制
     function initInteractions() {
         const translationHeader = document.getElementById('translationHeader');
         const translationContent = document.getElementById('translationContent');
@@ -327,6 +349,7 @@
             else document.body.classList.add('hide-english'); 
         });
 
+        // 🚀 母版定位核心：追踪古文生词的物理 X/Y 轴位置，无缝悬浮对齐气泡
         const words = document.querySelectorAll('.word');
         const tooltip = document.getElementById('tooltip');
         const dispWord = document.getElementById('disp-word');
