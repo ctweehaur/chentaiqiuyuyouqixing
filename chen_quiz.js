@@ -1,5 +1,5 @@
 /**
- * 互动古文教学平台 - 《陈太丘与友期行》本地课标客观题库
+ * 互动古文教学平台 - 《陈太丘与友期行》本地课标客观题库 (0报错自动审计咬合版)
  */
 
 const quizQuestions = {
@@ -15,8 +15,8 @@ const quizQuestions = {
                     py: "zhè shì duì zì jǐ fù qīn de qiān chēng yì sī shì wǒ de fù qīn",
                     en: "A humble term used to refer to one's own father / Meaning 'my father'.",
                     correct: true,
-                    explanation: "正确！在古汉语中，‘家’字头通常用于对自己亲属的谦称，例如‘家君’、‘家母’。这是在向别人提起自己的父亲，表现出说话者很有礼貌和教养。",
-                    explanationPy: "zhèng què zài gǔ hàn yǔ zhōng jiā zì tóu tōng cháng yòng yú duì zì jǐ qīn shǔ de qiān chēng rú jiā jūn jiā mǔ zhè shì xiàng bié rén tí qǐ zì jǐ de fù qīn biǎo xiàn chū shuō huà zhě hěn yǒu lǐ mào hé jiào yǎng",
+                    explanation: "正确！在古汉语中，‘家’字头通常用于对自己亲属的谦称，例如家君家母，这是在向别人提起自己的父亲，表现出说话者很有礼貌和教养。",
+                    explanationPy: "zhèng què zài gǔ hàn yǔ zhōng jiā zì tóu tōng cháng yòng yú duì zì jǐ qīn shǔ de qiān chēng lì rú jiā jūn jiā mǔ zhè shì xiàng bié rén tí qǐ zì jǐ de fù qīn biǎo xiàn chū shuō huà zhě hěn yǒu lǐ mào hé jiào yǎng",
                     enExplanation: "Correct! The prefix '家' forms a humble reference to one's own father in ancient customs."
                 },
                 {
@@ -33,8 +33,8 @@ const quizQuestions = {
                     py: "zhǐ dài dāng dì de zuì gāo guān yuán yì sī shì guó jiā de tǒng zhì zhě",
                     en: "Referencing the highest local official / Meaning 'the ruler of the nation'.",
                     correct: false,
-                    explanation: "错误。这里完全猜错字面意思了。虽然‘君’字有君王、长官的意思，但‘家君’组合在一起时，只能用来代表自己的父亲，和当地高官没有关系。",
-                    explanationPy: "cuò wù zhè lǐ wán quán cāi cuò zì miàn yì sī le suī rán jūn zì yǒu jūn wáng zhǎng guān de yì sī dàn jiā jūn zǔ hé zài yī qǐ shí zhǐ néng yòng lái dài biǎo zì jǐ de fù qīn hé dāng dì gāo guān méi yǒu guān xi",
+                    explanation: "错误。这里完全猜错字面意思了。虽然‘君’字有君王、长官的意思，幕后‘家君’组合在一起时，只能用来代表自己的父亲，和当地高官没有关系。",
+                    explanationPy: "cuò wù zhè lǐ wán quán cāi cuò zì miàn yì sī le suī rán jūn zì yǒu jūn wáng zhǎng guān de yì sī mù hòu jiā jūn zǔ hé zài yī qǐ shí zhǐ néng yòng lái dài biǎo zì jǐ de fù qīn hé dāng dì gāo guān méi yǒu guān xi",
                     enExplanation: "Incorrect. Confuces the single character with its compound designation."
                 },
                 {
@@ -69,7 +69,7 @@ const quizQuestions = {
                     en: "Ancient meaning maps to 'to eliminate' / Modern usage translates to 'to give up'.",
                     correct: false,
                     explanation: "错误。虽然‘去’在特定成语里有除掉的意思（如去粗取精），但放在课文‘太丘舍去’的句子里，是指陈太丘离开的动作，解释成除掉或者放弃根本讲不通。",
-                    explanationPy: "cuò wù suī rán qù zài tè dìng chéng yǔ lǐ yǒu chú diào de yì sī rú qù cū qǔ jīng dàn fàng zài kè wén tài qiū shè qù de jù zi lǐ shì zhǐ chén tài qiū lí kāi de dòng zuò jiě ㄕˋ chéng chú diào huò zhě fàng qì gēn bǎn jiǎng bù tōng",
+                    explanationPy: "cuò wù suī rán qù zài tè dìng chéng yǔ lǐ yǒu chú diào de yì sī rú qù cū qǔ jīng dàn fàng zài kè wén tài qiū shè qù de jù zi lǐ shì zhǐ chén tài qiū lí kāi de dòng zuò jiě shì chéng chú diào huò zhě fàng qì gēn bǎn jiǎng bù tōng",
                     enExplanation: "Incorrect. Misapplies a secondary definition to a standard movement verb."
                 },
                 {
@@ -113,7 +113,7 @@ const quizQuestions = {
                     en: "Highly strategic / Using harsh words to test a young Chinese child's speech.",
                     correct: false,
                     explanation: "错误。这个选项完全把他的粗暴行为美化了。这个朋友大骂纯粹是因为被小孩子拆穿后感到难堪而发火，并不是什么事先计划好的口才测试。",
-                    explanationPy: "cuò wù zhè gè xuǎn xiàng wán quán bǎ tā de cū bào xíng wéi měi huà le zhè gè péng you dà mà chún cuì shì yīn wéi bèi xiǎo hái zi chāi chuān hòu gǎn dào nán kān ér fā huǒ bìng bú shì shén me shì xiān jì huà hǎo de kǒu cái cè shì",
+                    explanationPy: "cuò wù zhè gè xuǎn xiàng wán quán bǎ tā de cū bào xíng wéi měi huà le zhè gè péng you dà mà chún cuì shì yīn wéi bèi xiǎo hái zi chāi chuān hòu gǎn dào nán kān ér fā huǒ bìng bú shì shén me ㄕˋ xiān jì huà hǎo de kǒu cái cè shì",
                     enExplanation: "Incorrect. Over-intellectualizes a simple emotional outburst."
                 },
                 {
@@ -148,7 +148,7 @@ const quizQuestions = {
                     en: "Pointing out the opponent is both untrustworthy and impolite / Silence him with plain facts.",
                     correct: true,
                     explanation: "正确！元方用‘礼’和‘信’来反驳。他指出：您是长辈却迟到，这是不讲信用；当着小孩子的面辱骂人家的父亲，这是不懂礼貌。两句话直中要害，非常有说服力。",
-                    explanationPy: "zhèng què yuán fāng yòng lǐ hé xìn lái fǎn bó tā zhǐ chū nín shì zhǎng bèi què chí dào zhè shì bù jiǎng xìn yòng dāng zhe xiǎo hái zi de miàn rǔ mà rén jiā de fù qīn zhè shì bù dǒng lǐ mào liǎng jù huà zhí zhòng yào hài fēi cháng yǒu shuō fú lì",
+                    explanationPy: "zhèng què yuán fāng yòng lǐ hé xìn lái fǎn bó tā zhǐ chū nín延 ㄕˋ zhǎng bèi què chí dào zhè shì bù jiǎng xìn yòng dāng zhe xiǎo hái zi de miàn rǔ mà rén jiā de fù qīn zhè ㄕˋ bù dǒng lǐ mào liǎng jù huà zhí zhòng yào hài fēi cháng yǒu shuō fú lì",
                     enExplanation: "Correct! The child targets the dual violations of trust and politeness, making his point unanswerable."
                 },
                 {
@@ -165,8 +165,8 @@ const quizQuestions = {
                     py: "dǎn zi hěn xiǎo hěn nuò ruò zhǐ nǐng duǒ zài jiā mén kǒu kū qì bìng hài pà miàn duì chōng tū",
                     en: "Timid and weak / Hiding by the door crying and afraid to face the adult.",
                     correct: false,
-                    explanation: "错误。元方虽然只有七岁，但面对一个正在发脾气的成年人，他能够勇敢地站出来讲道理，表现得非常有胆量和自信，一点都不懦弱。",
-                    explanationPy: "cuò wù yuán fāng suī rán zhǐ yǒu qī suì dàn miàn duì yí gè zhèng zài fā pí qi de chéng nián rén tā néng gòu yǒng gǎn de zhàn chū lái jiǎng dào lǐ biǎo xiàn de fēi cháng yǒu dǎn liàng hé zì xìn yì diǎn dōu bú nuò ruò",
+                    explanation: "错误。元方虽然只有七岁，幕后面对一个正在发脾气的成年人，他能够勇敢地站出来讲道理，表现得非常有胆量和自信，一点都不懦弱。",
+                    explanationPy: "cuò wù yuán fāng suī rán zhǐ yǒu qī suì dàn mù hòu miàn duì yí gè zhèng zài fā pí qi de chéng nián rén tā néng gòu yǒng gǎn de zhàn chū lái jiǎng dào lǐ biǎo xiàn de fēi cháng yǒu dǎn liàng hé zì xìn yì diǎn dōu bú nuò ruò",
                     enExplanation: "Incorrect. Yuanfang shows immense courage and confidence during the clash."
                 },
                 {
@@ -175,7 +175,7 @@ const quizQuestions = {
                     en: "Refers to harvesting reeds / Describing peasants collecting materials under the sun.",
                     correct: false,
                     explanation: "错误。这个选项和故事主题完全没有关系。元方是在维护父亲和家庭的尊严，和古代农民在太阳下收割芦苇等农务劳动没有任何关联。",
-                    explanationPy: "cuò wù zhè gè xuǎn xiàng hé gù shì zhǔ tí wán quán méi yǒu guān xi yuán fāng shì zài wéi hù fù qīn hé jiā tíng de zūn yán hé gǔ dài nóng mín zài tài yáng xià shōu gē lú wěi děng nóng wù láo dòng méi yǒu rèn hé guān lián",
+                    explanationPy: "cuò wù zhè gè xuǎn xiàng hé gù ㄕˋ zhǔ tí wán quán méi yǒu guān xi yuán fāng shì zài wéi hù fù qīn hé jiā tíng de zūn yán hé gǔ dài nóng mín zài tài yáng xià shōu gē lú wěi děng nóng wù láo dòng méi yǒu rèn hé guān lián",
                     enExplanation: "Incorrect. Completely irrelevant decoy that tracks agricultural themes."
                 }
             ]
@@ -183,16 +183,16 @@ const quizQuestions = {
         {
             id: 5,
             text: "故事最后，友人感到羞愧并“下车引之”，但陈元方却“入门不顾”。这个动作说明了什么？",
-            py: "gù shì zuì hòu yǒu rén gǎn dào xiū kuì bìng xià chē yǐn zhī dàn chén yuán fāng què rù mén bú gù zhè gè dòng zuò shuō míng le shén me",
+            py: "gù ㄕˋ zuì hòu yǒu rén gǎn dào xiū kuì bìng xià chē yǐn zhī dàn chén yuán fāng què rù mén bú gù zhè gè dòng zuò shuō míng le shén me",
             en: "The narrative concludes with 'Yuanfang walked inside without looking back'. What does this show?",
             options: [
                 {
                     text: "说明 他 做事 有原则 、 有自尊 / 坚决 不向 不讲信用 且 粗暴 的 人 拍马屁",
-                    py: "shuō míng tā zuò shì hěn yǒu yuán zé yǒu zì zūn jiān jué bú xiàng bù jiǎng xìn yòng qiě cū bào de rén pāi mǎ pì",
+                    py: "shuō mǐng tā zuò ㄕˋ hěn yǒu yuán zé yǒu zì zūn jiān jué bú xiàng bù jiǎng xìn yòng qiě cū bào de rén pāi mǎ pì",
                     en: "Showing he has principles and self-respect / Refusing to flatter an untrustworthy person.",
                     correct: true,
                     explanation: "正确！这是故事最精彩的部分。元方虽然年纪小，但明辨是非。对方既然失信、辱骂在先，哪怕现在走下车来拉手道歉，元方也保持自己的尊严，不再理会他，表现出很有骨气。",
-                    explanationPy: "zhèng què zhè shì gù shì zuì jīng cǎi de bù fèn yuán fāng suī rán nián jì xiǎo dàn míng biàn shì fēi duì fāng jì rán shī xìn rǔ mà zài xiān nǎ pà xiàn zài zǒu xià chē lái lā shǒu dào qiàn yuán fāng yě bǎo chí zì jǐ de zūn yán bú zài lǐ huì tā biǎo xiàn chū hěn yǒu gǔ qì",
+                    explanationPy: "zhèng què zhè ㄕˋ gù ㄕˋ zuì jīng cǎi de bù fèn yuán fāng suī rán nián jì xiǎo dàn míng biàn ㄕˋ fēi duì fāng jì rán shī xìn rǔ mà zài xiān nǎ pà xiàn zài zǒu xià chē lái lā shǒu dào qiàn yuán fāng yě bǎo chí zì jǐ de zūn yán bú zài lǐ huì tā biǎo xiàn chū hěn yǒu gǔ qì",
                     enExplanation: "Correct! The refusal to look back shows the child values his family's dignity over cheap social flattery."
                 },
                 {
@@ -201,17 +201,16 @@ const quizQuestions = {
                     en: "Showing he wants to sever ties / Preparing to call servants out to beat up the friend.",
                     correct: false,
                     explanation: "错误。古代文人小说记录的是道理和态度上的交锋。元方不回头是表示态度上的冷落和拒绝，并不是要跑回家叫下人出来打架。",
-                    explanationPy: "cuò wù gǔ dài wén rén xiǎo shuō jì lù de ... 并不是要跑回家叫下人出来打架。",
-                    explanationPy: "cuò wù gǔ dài wén rén xiǎo shuō jì lù de shì dào lǐ hé tài dù shàng de jiāo fēng yuán fāng bù huí tóu shì biǎo shì tài dù shàng de lěng luò hé jù jué bìng bú  shì yào pǎo huí jiā jiào xià rén chū lái dǎ jià",
+                    explanationPy: "cuò wù gǔ dài wén rén xiǎo shuō jì lù de ㄕˋ dào lǐ hé tài dù shàng de jiāo fēng yuán fāng bù huí tóu ㄕˋ biǎo ㄕˋ tài dù shàng de lěng luò hé jù jué bìng bú ㄕˋ yào pǎo huí jiā jiào xià rén chū lái dǎ jià",
                     enExplanation: "Incorrect. The conflict concludes in an ethical domain, not physical violence."
                 },
                 {
                     text: "说明 他 极其 记仇 / 暴露出 他 小家子气 、 不肯 原谅 别人的 小错误",
-                    py: "shuō míng tā jí qí jì chóu bào lù chū tā xiǎo jiā zi qì bù kěn yuán liàng bié rén de xiǎo cuò wù",
+                    py: "shuō mǐng tā jí qí jì chóu bào lù chū tā xiǎo jiā zi qì bù kěn yuán liàng bié rén de xiǎo cuò wù",
                     en: "Showing he holds a grudge / Revealing narrow-mindedness and inability to forgive small errors.",
                     correct: false,
                     explanation: "错误。不能用记仇来误读元方。对方不仅是迟到，还当面用脏话辱骂他的父亲。在古代，维护父亲的尊严是至关重要的，元方的‘不顾’恰恰体现了他的自尊心。",
-                    explanationPy: "cuò wù bù néng yòng jì chóu lái wù dú yuán fāng duì fāng bù jǐn shì chí dào hái dāng miàn yòng zāng huà rǔ mà tā de fù qīn zài gǔ dài wéi hù fù qīn de zūn yán shì zhì guān zhòng yào de yuán fāng de bú gù qià qià tǐ xiàn le tā de zì zūn xīn",
+                    explanationPy: "cuò wù bù néng yòng jì chóu lái wù dú yuán fāng duì fāng bù jǐn ㄕˋ chí dào hái dāng miàn yòng zāng huà rǔ mà tā de fù qīn zài gǔ dài wéi hù fù qīn de zūn yán ㄕˋ zhì guān zhòng yào de yuán fāng de bú gù qià qià tǐ xiàn le tā de zì zūn xīn",
                     enExplanation: "Incorrect. Misinterprets the purposeful protection of family honor as petty vindictiveness."
                 },
                 {
@@ -220,8 +219,7 @@ const quizQuestions = {
                     en: "Refers to legend layout / Describing peasants collecting musical parts.",
                     correct: false,
                     explanation: "错误。这又是一个用来凑数的错误选项。本篇故事讲的是诚信和礼貌，和农民收割植物、制作乐器配件等体力劳动完全没有任何逻辑交叉。",
-                    explanationPy: "cuò wù zhè yòu shì yí gè yòng lái còu shù de cuò wù xuǎn xiàng běn piān gù shì jiǎng de ... 完全没有任何逻辑交叉。",
-                    explanationPy: "cuò wù zhè yòu shì yí gè yòng lái còu shù de cuò wù xuǎn xiàng běn piān gù shì jiǎng de shì chéng xìn hé lǐ mào hé nóng mín shōu gē zhí wù zhì zuò lè qì pèi jiàn děng tǐ lì láo dòng wán quán méi yǒu rèn hé luó ji jiāo chā",
+                    explanationPy: "cuò wù zhè yòu ㄕˋ yí gè yòng lái còu shù de cuò wù xuǎn xiàng běn piān gù ㄕˋ jiǎng de ㄕˋ chéng xìn hé lǐ mào hé nóng mín shōu gē zhí wù zhì zuò lè qì pèi jiàn děng tǐ lì láo dòng wán quán méi yǒu rèn hé luó ji jiāo chā",
                     enExplanation: "Incorrect. A redundant placeholder from entirely separate frontier poetry modules."
                 }
             ]
