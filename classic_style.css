@@ -51,17 +51,19 @@ body {
 #en-toggle:checked + .slider { background-color: var(--accent-purple); }
 #en-toggle:checked + .slider:before { transform: translateX(20px); }
 
-/* 注音核心容器 */
+/* ==========================================================================
+   🎯 注音核心容器：彻底消灭空隙的全新无损降维重构
+   ========================================================================== */
 .char-box {
-    display: inline-flex !important;
-    flex-direction: column !important;
-    align-items: center !important;
+    display: inline-block !important;      /* 修正：由 inline-flex 降级为稳固行内块，扼杀所有隐藏空格字符 */
+    text-align: center !important;
     vertical-align: bottom !important;
     margin: 0 1px !important;
     width: auto !important;
 }
 
 .char-box .py-text {
+    display: block !important;             /* 确保拼音自成块级，垂直稳稳盖在汉字上方 */
     font-size: 12px !important;
     color: var(--accent-orange) !important;
     font-weight: 500 !important;
@@ -74,9 +76,11 @@ body {
 }
 
 .char-box .zh-text {
+    display: block !important;             /* 块级排列，与上方拼音严丝合缝对齐 */
     font-size: 26px !important;
     line-height: 1.2 !important;
-    height: 32px !important;       
+    height: 32px !important;   
+    text-align: center !important;    
 }
 
 body.hide-pinyin .py-text { visibility: hidden !important; opacity: 0 !important; }
@@ -92,30 +96,18 @@ body.hide-english .sa-en {
     display: none !important; 
 }
 
-/* 原文大盒子：左对齐机制 */
 .poem-container { background: #fefcf5; border-radius: var(--border-radius-md); padding: 35px 30px; margin-bottom: 25px; border: 1px solid #ede9d0; margin-top: 15px; text-align: left !important; }
+.poem-paragraph { text-align: left !important; font-size: 26px; line-height: 3.4; color: var(--text-poem); font-family: 'STKaiti', 'KaiTi', '楷体', serif; letter-spacing: 1px; margin: 0; }
 
-/* 🎯 核心优化：全盘接管左对齐，并实现首行丝滑缩进空两格（2em） */
-.poem-paragraph { 
-    text-align: left !important; 
-    text-indent: 2em !important;     /* 开头精准缩进两格 */
-    padding-left: 0 !important;      /* 清理可能导致偏位的内边距 */
-    font-size: 26px; 
-    line-height: 3.4; 
-    color: var(--text-poem); 
-    font-family: 'STKaiti', 'KaiTi', '楷体', serif; 
-    letter-spacing: 1px; 
-    margin: 0; 
-}
-
+/* 🎯 优化：分词盒子同步修正为块级流，规避内部空格乱跑 */
 .word { 
     cursor: pointer; 
     padding: 0px 4px 4px 4px; 
     border-radius: 6px; 
     position: relative; 
     transition: all 0.25s; 
-    display: inline-flex; 
-    align-items: center;
+    display: inline-block !important;      /* 修正：不再使用 flex，锁定块流对齐 */
+    text-align: center !important;
     height: 48px; 
     overflow: visible;
 }
@@ -316,19 +308,10 @@ body.hide-english .sa-en {
 @keyframes slideDown { from { opacity: 0; transform: translateY(-15px); } to { opacity: 1; transform: translateY(0); } }
 @keyframes fadeIn { from { opacity: 0; transform: translateY(-5px); } to { opacity: 1; transform: translateY(0); } }
 
-/* 📱 手机移动端终极响应式适配 */
 @media (max-width: 600px) { 
     .app-container { padding: 25px 15px; } 
-    
-    /* 🎯 终极同步：移动端强制同步左对齐与两格缩进，拒绝产生偏色大位移 */
-    .poem-paragraph { 
-        text-align: left !important; 
-        text-indent: 2em !important; 
-        padding-left: 0 !important; 
-        font-size: 20px; 
-        letter-spacing: 2px; 
-    } 
-    
+    /* 🎯 同步微调：手机端同步采用标准重构机制 */
+    .poem-paragraph { padding-left: 0px !important; font-size: 20px; letter-spacing: 2px; } 
     .action-btn { width: 100%; } 
     .sa-card .q-en { padding-left: 0px; } 
 }
