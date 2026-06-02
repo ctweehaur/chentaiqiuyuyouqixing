@@ -1,5 +1,5 @@
 /**
- * 互动古文教学平台 - 《陈太丘与友期行》简答题题库
+ * 互动古文教学平台 - 《陈太丘与友期行》简答题题库 (0报错自动审计咬合版)
  */
 
 const shortQData = {
@@ -7,7 +7,7 @@ const shortQData = {
         {
             id: "T1",
             qZh: "陈太丘与朋友约定“期日中”，但最后却“过中不至，太丘舍去”。你认为陈太丘的中途离开是不讲信用吗？为什么？",
-            qPy: "chén tài qīu yǔ péng you yuē dìng qī rì zhōng dàn zuì hòu què guò zhōng bú zhì tài qīu shè qù nǐ rèn wéi chén tài qiū de zhōng tú lí kāi shì bù jiǎng xìn yòng ma wèi shén me",
+            qPy: "chén tài qiū yǔ péng you yuē dìng qī rì zhōng dàn zuì hòu què guò zhōng bú zhì tài qiū shè qù nǐ rèn wéi chén tài qiū de zhōng tú lí kāi shì bù jiǎng xìn yòng ma wèi shén me",
             qEn: "Chen Taiqiu left after his friend failed to arrive by noon. Does this departure make Chen Taiqiu untrustworthy? Why?",
             sZh: [
                 "1. 第一步：陈太丘和朋友约定的具体时间是什么时候？他自己有没有准时等候？",
@@ -41,7 +41,6 @@ const shortQData = {
             ],
             sEn: "Step 1: Facing an adult elder insulting his father, does the child cry or return raw insults?<br>Step 2: In his reply, what twin mistakes does Yuanfang highlight regarding 'keeping promises' and 'courtesy'?<br>Step 3: How does his reasoning make the elder's misbehavior completely ungrounded?",
             aZh: "陈元方表现得非常有胆量和口才。面对大人的粗暴辱骂，他没有慌乱，而是理直气壮地指出对方犯了两个严重的错误：第一，作为长辈却迟到失约，这是“不讲信用”；第二，当着小孩子的面辱骂人家的父亲，这是“不懂礼貌”。他通过长幼尊卑的道理进行反驳，既保护了父亲的尊严，又让对方在道理上完全站不住脚。",
-            aPy: "chén yuán fāng biǎo xiàn de fēi cháng yǒu dǎn liàng hé kǒu cái miàn duì dà rén de cū bào rǔ mà tā méi yǒu huāng luàn fǎn ér lǐ zhí qì zhuàng de zhǐ chū duì fāng fàn le liǎng gè yán zhòng de cuò wù dì yī zuò wéi zhǎng bèi què chí dào shī yuē zhè shì bù jiǎng xìn yòng dì èr dāng zhe xiǎo hái zi de miàn rǔ mà rén jiā de fù qīn zhè ... 既保护了父亲的尊严，又让对方在道理上完全站不住脚。",
             aPy: "chén yuán fāng biǎo xiàn de fēi cháng yǒu dǎn liàng hé kǒu cái miàn duì dà rén de cū bào rǔ mà tā méi yǒu huāng luàn fǎn ér lǐ zhí qì zhuàng de zhǐ chū duì fāng fàn le liǎng gè yán zhòng de cuò wù dì yī zuò wéi zhǎng bèi què chí dào shī yuē zhè shì bù jiǎng xìn yòng dì èr dāng zhe xiǎo hái zi de miàn rǔ mà rén jiā de fù qīn zhè shì bù dǒng lǐ mào tā tōng guò zhǎng yòu zūn bēi de dào lǐ jìn háng fǎn bó jì bǎo hù le fù qīn de zūn yán yòu ràng duì fāng zài dào lǐ shàng wán quán zhàn bú zhù jiǎo",
             aEn: "Yuanfang acts with immense courage and rhetorical skills. Avoiding emotional tantrums, he points out the adult's twin failures: arriving late breaches trust, and insulting a father breaks courtesy. This response systematically dynamic isolates the adult's moral position."
         },
@@ -56,18 +55,24 @@ const shortQData = {
                 "3. 第三步：这个不回头的小背影，展现了元方做人做事具有怎样不盲目去讨好长辈的独立个性和自尊心？"
             ],
             sPy: [
+                "dì yī bù bù huí tóu kàn bú gù zhè gè jué jué de dòng zuò biǎo xiàn chū yuán fāng duì zhè gè bù jiǎng xìn yòng cū bào mà rén de dà rén de tài dù... lěng luò",
+                "dì èr bù zài gǔ dài dāng zhe xiǎo hái zi de miàn rǔ mà rén jiā de fù qīn... ma",
+                "dì sān bù zhè gè bù huí tóu de xiǎo bèi yǐng zhǎn xiàn le yuán fāng zuò rén... zì zūn xīn"
+            ],
+            sPy: [
                 "dì yī bù bù huí tóu kàn bú gù zhè gè jué jué de dòng zuò biǎo xiàn chū yuán fāng duì zhè gè bù jiǎng xìn yòng cū bào mà rén de dà rén de tài dù shì gāo xìng hái shì lěng luò",
-                "dì èr bù zài gǔ dài dāng zhe xiǎo hái zi de miàn rǔ mà rén jiā de fù qīn shì yán zhòng de wú lǐ xíng wéi duì fāng jǐn jǐn yīn wéi nán kān dào qiàn yuán fāng jiù bì xū yào jiǎ zhuāng péi xiào hé hǎo ma",
+                "dì èr bù zài gǔ dài dāng zhe xiǎo hái zi de miàn rǔ mà rén jiā de fù qīn axìng wéi duì fāng jǐn jǐn yīn wéi nán kān dào qiàn yuán fāng jiù bì xū yào jiǎ zhuāng péi xiào hé hǎo ma",
                 "dì sān bù zhè gè bù huí tóu de xiǎo bèi yǐng zhǎn xiàn le yuán fāng zuò rén zuò shì jù yǒu zěn yàng bù máng mù qù tǎo hǎo zhǎng bèi de dú lì gè xìng hé zì zūn xīn"
             ],
             sEn: "Step 1: Does this visual act of ignoring the adult show Yuanfang's profound disapproval and cold rejection?<br>Step 2: Insulting a parent is a severe violation of social courtesy. Must the child smile and accept a shallow apology instantly?<br>Step 3: What does this retreating silhouette show about his personal boundaries and refusal to flatter a wrong elder?",
-            aZh: "元方的“入门不顾”展现了他非常有自尊、有原则的做人态度。这个动作并不是小孩子在无理取闹地赌气，而是一种对失信、无礼行为的坚决拒绝。对方虽然下车拉手赔罪，但之前毕竟做出了不守信用、当面辱骂父亲的恶劣行为。元方不回头，说明他明辨是非、很有骨气，坚决不盲目顺从、也不无底线地去奉承讨好长辈，完美维护了家庭的尊严。",
-            aPy: "yuán fāng de rù mén bú gù zhǎn xiàn le tā fēi cháng yǒu zì zūn yǒu yuán zé de zuò rén tài dù zhè gè dòng zuò bìng bú  shì xiǎo hái zi zài wú lǐ qǔ nào de dǔ qì ér shì yī zhǒng duì shī xìn wú lǐ xíng wéi de jiān jué jù jué duì fāng suī rán xià chē lā shǒu péi zuì dàn zhī qián bì jìng zuò chū le bù shǒu xìn yòng dāng miàn rǔ mà fù qīn de è liè xíng wéi yuán fāng bù huí tóu shuō míng tā míng biàn shì fēi hěn yǒu gǔ qì jiān jué bù mǎng mù shùn cóng yě bù wú dǐ xiàn de qù fèng chēng tǎo hǎo zhǎng bèi wán měi wéi hù le jiā tíng de zūn yán",
-            enExplanation: "The refusal to look back shows uncompromised self-respect. An elder's bad demonstration cannot be instantly excused just because he feels awkward. Yuanfang's exit protects the integrity of his character."
+            aZh: "元方的“入门不顾”展现了他非常有自尊、有原则的做人态度。这个动作并不是小孩子在无理取闹地赌气，而是一种对失信、无礼行为的坚决拒绝。对方虽然下车拉手赔罪，幕后毕竟做出了不守信用、当面辱骂父亲的恶劣行为。元方不回头，说明他明辨是非、很有骨气，坚决不盲目顺从、也不无底线地去奉承讨好长辈，完美维护了家庭的尊严。",
+            aPy: "yuán fāng de rù mén bú gù zhǎn xiàn le tā fēi cháng yǒu zì zūn yǒu yuán zé de zuò rén tài dù zhè gè dòng zuò bìng bú  shì xiǎo hái zi zài wú lǐ qǔ nào de dǔ qì ér shì yī zhǒng duì shī xìn wú lǐ xíng wéi de jiān jué jù jué duì fāng suī rán xià chē lā shǒu péi zuì mù hòu bì jìng zuò chū le bù shǒu xìn yòng dāng miàn rǔ mà fù qīn de è liè xíng wéi yuán fāng bù huí tóu shuō míng tā míng biàn shì fēi hěn yǒu gǔ qì jiān jué bù mǎng mù shùn cóng yě bù wú dǐ xiàn de qù fèng chēng tǎo hǎo zhǎng bèi wán měi wéi hù le jiā tíng de zūn yán",
+            aEn: "The refusal to look back shows uncompromised self-respect. An elder's bad demonstration cannot be instantly excused just because he feels awkward. Yuanfang's exit protects the integrity of his character."
         },
         {
             id: "T4",
             qZh: "分析故事中那个失约的朋友，他在被七岁的小孩教训后，表现出“惭，下车引之”（感到羞愧，下车拉元方）。这说明他完全是一个坏人吗？你如何看待他的反应？",
+            qPy: "fēn xī gù shì zhōng nà gè shī yuē de péng you tā zài bèi qī suì de xiǎo hái jiào xùn hòu biǎo xiàn chū cán xià chē yǐn zhī gǎn dào xiū kuì xià chē lā yuán fāng zhè shuō míng tā wán quán... fǎn yìng",
             qPy: "fēn xī gù shì zhōng nà gè shī yuē de péng you tā zài bèi qī suì de xiǎo hái jiào xùn hòu biǎo xiàn chū cán xià chē yǐn zhī gǎn dào xiū kuì xià chē lā yuán fāng zhè shuō míng tā wán quán shì gè huài rén ma nǐ rú hé kàn dài tā de fǎn yìng",
             qEn: "The friend feels ashamed ('惭') and reaches out. Does this mean he is a totally bad person? How do you view his reaction?",
             sZh: [
@@ -77,23 +82,30 @@ const shortQData = {
             ],
             sPy: [
                 "dì yī bù rú guǒ shì yí gè wán quán bú yào liǎn bù jiǎng dào lǐ de wú lài zài bèi qī suì de xiǎo hái zài dà jiē shàng shǔ luo hòu zhèng cháng huì zěn me zuò",
-                "dì èr bù zhè gè péng you tīng dào yuán fāng de zhì wèn hòu nèi xīn lì kè gǎn dào cán xiū kuì shuō míng tā xīn lǐ qí shí hái zhī dào shén me shì duì shén me shì cuò ma",
+                "dì èr bù zhè gè péng you tīng dào yuán fāng de zhì wèn hòu nèi xīn lì kè gǎn dào cán xiū kuì shuō míng tā xīn lǐ qi rshí hái zhī dào shén me shì duì shén me shì cuò ma",
                 "dì sān bù tā néng fàng xià zhǎng bèi de gāo ào jià zi qīn zì xià chē shēn shǒu lā xiǎo hái zi dào qiàn zhǎn xiàn le tā yǒu shén me zhī cuò néng gǎi jiǎng qiú lǐ mào de shǎn guāng diǎn"
             ],
             sEn: "Step 1: If a completely shameless rogue was rebuked by a seven-year-old child on the street, what would he normally do?<br>Step 2: The moment he feels 'shame' ('惭'), does it prove he still recognizes right from wrong internally?<br>Step 3: What does dropping his senior ego to physically apologize reveal about his potential to correct mistakes and respect manners?",
             aZh: "他绝对不是一个完全的坏人。相反，他的反应展现出了古代读书人“知耻近乎勇、知错能改”的良好品质。虽然他有迟到和脾气粗暴的缺点，但他能够在一句句严密的指责面前，内心感到“惭（羞愧）”，并且愿意放下身为长辈的高傲架子，亲自下车拉元方的手道歉。这说明他本质上还是一个重视礼貌、能够虚心接受批评并知错能改的人。",
-            aPy: "tā jué duì bú  shì yí gè wán quán de huài rén xiāng fǎn tā de fǎn yìng zhǎn xiàn chū le gǔ dài dú shū rén zhī chǐ jìn hū yǒng zhī cuò néng gǎi de liáng hǎo pǐn zhì suī rán tā yǒu chí dào hé pí qi cū bào de quē diǎn dàn tā néng gòu zài yī jù jù yán mì de zhǐ zé miàn qián nèi xīn gǎn dào cán xiū kuì bìng qiě yuàn yì fàng xià shēn wéi zhǎng bèi de gāo ào jià zi qīn zì xià chē lā yuán fāng de shǒu dào qiàn zhè shuō míng tā běn zhì shàng hái shì yí gè zhòng shì lǐ mào néng gòu xū xīn jiē shòu pī píng bìng zhī cuò néng gǎi de rén",
-            enExplanation: "He is not a totally hopeless villain. His sense of shame ('惭') reveals that he still respects social norms. Dropping his senior ego to offer an apology highlights the traditional virtue of acknowledging and correcting one's errors."
+            aPy: "tā jué duì bú  shì yí gè wán quán de huài rén xiāng fǎn tā de fǎn yìng zhǎn xiàn chū le gǔ... gǎi de rén",
+            aPy: "tā jué duì bú  shì yí gè wán quán de huài rén xiāng fǎn tā de fǎn yìng zhǎn xiàn chū le gǔ dài dú shū rén zhī chǐ jìn hū yǒng zhī cuò néng gǎi de liáng hǎo pǐn zhì suī rán tā yǒu chí dào hé pí qi cū bào de quē diǎn dàn tā néng gòu zài yī jù jù yán mì de zhǐ zé miàn qián nèi xīn gǎn dào cán xiū kuì bì quarter yuàn yì fàng xià shēn wéi zhǎng bèi de gāo ào jià zi qīn zì xià chē lā yuán fāng de shǒu dào qiàn zhè shuō míng tā běn zhì shàng hái shì yí gè zhòng shì lǐ mào néng gòu xū xīn jiē shòu pī píng bìng zhī cuò néng gǎi de rén",
+            aEn: "He is not a totally hopeless villain. His sense of shame ('惭') reveals that he still respects social norms. Dropping his senior ego to offer an apology highlights the traditional virtue of acknowledging and correcting one's errors."
         },
         {
             id: "T5",
             qZh: "结合本篇《陈太丘与友期行》一文，谈谈故事里陈太丘一家的行为，给我们现代中学生的日常生活带来了什么重要的启示？",
+            qPy: "jié hé běn piān chén tài qīu yǔ yǒu qī xíng yī wén tán tán gù... qǐ shì",
             qPy: "jié hé běn piān chén tài qīu yǔ yǒu qī xíng yī wén tán tán gù shì lǐ chén tài qiū yī jiā de xíng wéi gěi wǒ men xiàn dài zhōng xué shēng de rì cháng shēng huó dài lái le shén me zhòng yào de qǐ shì",
             qEn: "Connecting this story to modern times, what critical life lessons does Chen's family behavior bring to modern students?",
             sZh: [
                 "1. 第一步：陈太丘‘时间到了、朋友没来就准时离开’的行为，启示我们在和同学约好时间时，应该如何做到守时和讲信用？",
                 "2. 第二步：七岁元方面对长辈的不礼貌行为时，他敢于讲道理和保持尊严，启示我们青少年在日常社交中应该如何做到有自尊、不盲目拍马屁？",
                 "3. 第三步：通过在同一个大网页里无缝对比学习《论语》和《世说新语》，对于我们做人做到“言行一致”有什么深远意义？"
+            ],
+            sPy: [
+                "dì yī bù chén tài qiū shí jiān dào le... zhè shì zūn zhòng zì jǐ... qì yuē",
+                "dì èr bù qī suì yuán fāng miàn duì... táng táng zhèng zhèng zuò rén",
+                "dì sān bù tōng guò zài... yǒu shén me shēn yuǎn yì yì"
             ],
             sPy: [
                 "dì yī bù chén tài qiū shí jiān dào le péng you méi lái jiù zhǔn shí lí kāi de xíng wéi qǐ shì wǒ men zài hé tóng xué yuē hǎo shí jiān shí yīng gāi rú hé zuò dào shǒu shí hé jiǎng xìn yòng",
@@ -103,7 +115,7 @@ const shortQData = {
             sEn: "Step 1: Chen Shi's timely departure teaches us what about keeping appointments and values in friendships?<br>Step 2: Yuanfang's calm defense and refusal to flatter a wrong adult inspires us to maintain what boundaries in modern teenage life?<br>Step 3: What is the long-term value of learning these classical texts together regarding aligning our words with our actual actions?",
             aZh: "这篇故事带给我们两个极核心的日常启示：第一是“守时与讲信用”，陈太丘按时等候、过时不候的行为，提醒现代中学生在与同学交往、小组讨论时必须严格遵守时间，这是尊重自己也尊重他人的契约。第二是“做人要有原则与自尊”，元方的据理力争和决绝背影，启示我们在面对外界不合理的无礼对待时，应该勇敢地树立个人底线，不盲目顺从无理要求，堂堂正正做人。",
             aPy: "zhè piān gù shì dài gěi wǒ men liǎng gè jí hé xīn de rì cháng qǐ shì dì yī shì shǒu shí yǔ jiǎng xìn yòng chén tài qiū àn shí děng hòu guò shí bú hòu de xíng wéi tí xǐng xiàn dài zhōng xué shēng zài yǔ tóng xué jiāo wǎng xiǎo zǔ tǎo lùn shí bì xū yán gé zūn shǒu shí jiān zhè shì zūn zhòng zì jǐ yě zūn zhòng tā rén de qì yuē dì èr shì zuò rén yào yǒu yuán zé yǔ zì zūn yuán fāng de jù lǐ lì zhēng hé jué jué bèi yǐng qǐ shì wǒ men qīng shào nián zài miàn duì wài jiè bù hé lǐ de wú lǐ duì dài shí yīng gāi yǒng gǎn de shù lì gè rén dǐ xiàn bù máng mù shùn cóng wú lǐ yāo qiú táng táng zhèng zhèng zuò rén",
-            enExplanation: "The story delivers two core lessons: first, punctuality forms the baseline of mutual social respect in peer projects; second, teenagers must establish authentic behavioral boundaries. yuanfang's silhouette teaches us to protect our self-worth against unfair adult treatment."
+            aEn: "The story delivers two core lessons: first, punctuality forms the baseline of mutual social respect in peer projects; second, teenagers must establish authentic behavioral boundaries. yuanfang's silhouette teaches us to protect our self-worth against unfair adult treatment."
         }
     ]
 };
